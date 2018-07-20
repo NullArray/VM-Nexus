@@ -2,8 +2,8 @@
 
 """  
 +-----------+------------------------------------------+
-|Application: VM-Nexus	(YAR!)   	 ____          |
-|...........:         	  \	       ,'   Y`.	       |
+|Application: VM-Nexus	    (YAR!)   	 ____          |
+|...........:         	        \      ,'   Y`.	       |
 |Version....: 1.0.0		  \   /        \       |
 |License....: GNU GPL 3            `  \ ()  () /       |
 |Author.....: Vector/NullArray         `. /\ ,'        |
