@@ -1,5 +1,5 @@
 # VM-Nexus
-Multi-platform installer and wrapper for QEMU.
+Multi-platform installer and wrapper for QEMU-KVM.
 
 
 This repository contains components of a project i have been working on. The `installer.py` file is the component responsible for 
