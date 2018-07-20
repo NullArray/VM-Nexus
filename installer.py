@@ -23,6 +23,7 @@ def install(package):
     
     pipmain(['install', package])
 
+"""Imports, with automated dependency management"""
 import os
 import sys
 import time
@@ -103,10 +104,10 @@ class TqdmUpTo(tqdm):
 # Check if our config file is present
 if not os.path.isfile('q_config.json'):
 	config = { 'first_run': 'True',
-			   'qemu_installed': 'False',
-			   'virt-manager_installed':,'False',
-			   'GUI_mode': 'off',
-			   'architecture': 'null' }
+	           'qemu_installed': 'False',
+		   'virt-manager_installed':,'False',
+		   'GUI_mode': 'off',
+		   'architecture': 'null' }
 			    
 	with open('q_config.json', 'wb') as outfile:
 		json.dump(config, outfile)
@@ -150,8 +151,8 @@ def text(color, text):
         return red_bg
     elif color == 'magenta_bg':
         return magenta_bg
-	else:
-		return invalid
+    else:
+	return invalid
 
 # Banner header
 def header():
@@ -164,9 +165,9 @@ def header():
 # Execute/Capture OS commands/output
 def cmdline(command):
     process = subprocess.Popen(
-        args=command,
-        stdout=subprocess.PIPE,
-        shell=True)
+    args=command,
+    stdout=subprocess.PIPE,
+    shell=True)
     
     return process.communicate()[0]
 
@@ -174,6 +175,7 @@ def cmdline(command):
 def check_list(): # Replace with array of available VMs?
 	if 'False' in config["first_run"] and 'True' in config["qemu_installed"]:
 		# VM lists
+		# Auto-Downloader
 
 
 """Installation Operations"""
@@ -219,12 +221,13 @@ are in order...\n"""
 			else:
 				link = 'https://qemu.weilnetz.de/w32/qemu-w32-setup-20180430.exe'
 			
+			# Call downloader function
 			binary = win_downloader(link)	
 			print text("green", "\n[+]Done, initializing installer...\n")
 		
 			home_dir = os.getenv('HOME')
+			
 			template = "start %s >> %s/VMN-install.log && DEL %s" % (binary, home_dir, binary)
-			# Call downloader function
 			cmdline(template)
 		
 			# QEMU installer -> virt-manager(Win version AKA virt-viewer)	
@@ -292,7 +295,7 @@ are in order...\n"""
 		
 		
 
-def handle_mac():
+def handle_mac(arch):
 	# Print header
 	cmdline('clear')
 	header()
@@ -304,7 +307,7 @@ are in order...\n"""
 	if 'False' in config["qemu_installed"] and which('virt-manager') is None:
 		# Install QEMU and related utilities
 		print text("cyan", "[?]It seems QEMU is currently not installed\n")
-		print "Would you like Nexus to install QEMU and related utilities automatically?"
+		print "Would you like VM-Nexus to install QEMU and related utilities automatically?"
 	
 		choice = raw_input("[Y]es/[N]o").lower()
 	
@@ -314,6 +317,7 @@ are in order...\n"""
 			
 			if which('brew') is None:
 				cmdline("ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)' < /dev/null 2> /dev/null | tee -a VMN-Install.log")
+			
 			cmdline("brew install qemu | tee -a VMN-Install.log")
 			
 			print text("green", "[+]Done\n")
@@ -379,7 +383,7 @@ are in order...\n"""
 				time.sleep(1.5)
 				sys.exit(0)
 			
-def handle_linux():
+def handle_linux(arch):
 	# Print header
 	cmdline('clear')
 	header()
@@ -486,15 +490,16 @@ if __name__ == '__main__':
 	else:
 		debug = False
 	
-	if sys.platform == 'win32' or "Windows" in p.uname():
+	arch = p.architecture()				   
+					   
+	if sys.platform == 'win32' or "Windows" in p.system():
 		# Call appropriate handler
-		arch = p.architecture()
 		handle_win(arch)
 
 	elif sys.platform == 'darwin':
 		# Call appropriate handler
-		handle_mac()
+		handle_mac(arch)
 
 	elif sys.platform == 'linux2':
 		# Call appropriate handler
-		handle_linux()
+		handle_linux(arch)
