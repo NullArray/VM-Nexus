@@ -3,8 +3,6 @@
 # QEMU optional supporting libs
 function pkgs(){
 	
-
-	
 	sudo apt-get install            \
 		libaio-dev 		\
 		libbluetooth-dev	\
