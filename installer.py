@@ -2,25 +2,24 @@
 
 """  
 +-----------+------------------------------------------+
-|Application: VM-Nexus		 (YAR!)   	 ____          |
-|...........:         			 \	   ,'   Y`.		   |
-|Version....: 1.0.0				  \   /        \ 	   |
+|Application: VM-Nexus	(YAR!)   	 ____          |
+|...........:         	  \	       ,'   Y`.	       |
+|Version....: 1.0.0		  \   /        \       |
 |License....: GNU GPL 3            `  \ ()  () /       |
 |Author.....: Vector/NullArray         `. /\ ,'        |
 |Twitter....: @Real__Vector        8====| "" |====8    |
 |...........:                           `LLLU'         |
 +-----------+------------------------------------------+
-|Now with:					  					       | 
-|					Automated                          |
-|		     Dependency Management                     |         
+|Now with:	         Automated      	       |	   
+|                  Dependency Management               |         
 |  Where we're going, we don't need requirements files |
 +------------------------------------------------------+
-													 """
+						    """
 # Auto PIP
 def install(package):
     if not pip_imported == 1:
-		from pip._internal import main as pipmain
-		pip_imported = 1
+	from pip._internal import main as pipmain
+	pip_imported = 1
     
     pipmain(['install', package])
 
@@ -171,6 +170,7 @@ def cmdline(command):
     
     return process.communicate()[0]
 
+#---UNDER cONSTRUCTION---#
 def check_list(): # Replace with array of available VMs?
 	if 'False' in config["first_run"] and 'True' in config["qemu_installed"]:
 		# VM lists
