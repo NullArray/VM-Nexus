@@ -9,4 +9,4 @@ installing QEMU and related utilities on most popular platforms. While the scrip
 
 This is a work in progress, as such you may encounter a bug while testing one or more of these scripts out.
 
-Small update: I've split some of the fucntionality into multiple scripts. Of course functionality will be invoked from one "main" script. I've also started coding the GUI. When i have something substantial to post i will commit it to the repo. 
+Small update: I've split some of the fucntionality into multiple scripts(Not committed yet). Of course functionality will be invoked from one "main" script. I've also started coding the GUI. When i have something substantial to post i will commit it to the repo. 
